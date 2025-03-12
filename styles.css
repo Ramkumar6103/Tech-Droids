@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background: linear-gradient(135deg, #667eea, #764ba2); */
+}
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure it covers the entire background */
+  z-index: -1; /* Push behind other content */
+}
+
+.container {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #ffffffff;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+input:focus {
+  color: #fff;
+}
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #cf9bee;
+  outline: none;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.input-group label {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  color: #aaa;
+  transition: 0.3s;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: -10px;
+  font-size: 12px;
+  color: #cf9bee;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #764ba2;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #5a3a8a;
+}
+p {
+  color: #ffffffff;
+  margin: 20px;
+  font-size: 12px;
+}
+p a {
+  color: #fff;
+}
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #cf9bee;
+  border-radius: 5px;
+  font-size: 16px;
+  appearance: none;
+  background-color: #cf9bee;
+  cursor: pointer;
+}
+.input-group select:focus {
+  outline-color: none;
+}
