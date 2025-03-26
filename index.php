@@ -87,7 +87,7 @@ session_start();
             <div class="navbar">
                 <div class="logo">
                     <a href="#">
-                        <h1>.For-Dev</h1>
+                        <h1>Tech Droids</h1>
                     </a>
                 </div>
                 <nav>
@@ -107,7 +107,7 @@ session_start();
                 <?php if (isset($_SESSION['username'])): ?>
                 <div class="profile-icon" onclick="toggleDropdown()">
                     <img src="<?php echo $_SESSION['photo_path']; ?>" alt="User Profile" class="profile-image">
-                    <div class="notification-dot"></div>
+                    <!-- <div class="notification-dot"></div> -->
                     <div class="dropdown-content" id="myDropdown">
                         <div class="dropdown-header"><?php echo $_SESSION['username']; ?></div>
                         <a href="edit_profile.php"><img src="path/to/icon.png" class="dropdown-icon">Edit profile</a>

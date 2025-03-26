@@ -18,107 +18,104 @@ $task_type = $_SESSION['admin_task_type'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - <?php echo htmlspecialchars($task_type); ?></title>
     <style>
-        /* General Styles */
+        /* General Page Styling */
         body {
             font-family: 'Arial', sans-serif;
-            background: #f4f4f9;
+            background-color: #f4f4f9;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             text-align: center;
         }
 
+        /* Header Styling */
         h1 {
-            background: #007bff;
+            background-color: #007bff;
             color: white;
-            padding: 15px;
-            border-radius: 10px;
-            display: inline-block;
-            font-size: 24px;
+            padding: 20px;
+            margin: 0;
+            font-size: 28px;
         }
 
-        h2 {
-            color: #333;
-            margin-top: 20px;
+        /* Link Styling */
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
         }
 
-        /* Task Divisions */
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Task Divisions Container */
         .task-container {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
         }
 
+        /* Individual Task Division */
         .task-division {
-            background: white;
-            padding: 15px;
-            width: 200px;
-            text-align: center;
+            background-color: #ffffff;
+            border: 2px solid #dddddd;
             border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            width: 220px;
+            padding: 15px;
             cursor: pointer;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             font-weight: bold;
-            transition: transform 0.3s, background 0.3s;
+            transition: all 0.3s ease;
         }
 
         .task-division:hover {
-            background: #007bff;
+            background-color: #007bff;
             color: white;
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Table Styling */
-        table {
-            width: 90%;
-            margin: 30px auto;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        /* Logout Link */
+        a.logout {
+            color: #6c757d;
+            display: inline-block;
+            margin-top: 30px;
+            font-size: 16px;
         }
 
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: center;
+        a.logout:hover {
+            color: #dc3545;
         }
 
-        th {
-            background: #007bff;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-
-        /* Delete Button */
-        .delete-btn {
-            background: #dc3545;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .delete-btn:hover {
-            background: #c82333;
+        /* Text Styling */
+        h2 {
+            font-size: 22px;
+            color: #333333;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <h1>Welcome to the Admin Dashboard - <?php echo htmlspecialchars($task_type); ?></h1>
     <a href="admin_users.php">Click to see the users</a>
+
     <!-- Task Divisions -->
     <h2>Task Divisions</h2>
-    <div class="task-division" onclick="window.location.href='admin_task.php?category=<?php echo urlencode($task_type); ?>'">
-        <?php echo htmlspecialchars($task_type); ?>
+    <div class="task-container">
+        <!-- Existing Button -->
+        <div class="task-division" onclick="window.location.href='admin_task.php?category=<?php echo urlencode($task_type); ?>'">
+            <?php echo htmlspecialchars($task_type); ?>
+        </div>
+        
+        <!-- New Button for View Task Results -->
+        <div class="task-division" onclick="window.location.href='admin_task_results.php?category=<?php echo urlencode($task_type); ?>'">
+            View Task Results
+        </div>
     </div>
-    <a href="logout.php">Logout</a>
+    <a class="logout" href="logout.php">Logout</a>
 
 <?php
 // Close the database connection

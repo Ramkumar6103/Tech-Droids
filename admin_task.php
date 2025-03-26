@@ -4,6 +4,20 @@ include 'includes/db.php';
 // Get the selected category
 $category = isset($_GET['category']) ? trim($_GET['category']) : '';
 
+// Handle delete request
+if (isset($_POST['delete_task_id'])) {
+    $delete_task_id = $_POST['delete_task_id'];
+    $delete_sql = "DELETE FROM tasks WHERE id = ?";
+    $delete_stmt = $conn->prepare($delete_sql);
+    $delete_stmt->bind_param("i", $delete_task_id);
+    if ($delete_stmt->execute()) {
+        echo "<script>alert('Task deleted successfully!');</script>";
+    } else {
+        echo "<script>alert('Error deleting task: " . $conn->error . "');</script>";
+    }
+    $delete_stmt->close();
+}
+
 // Fetch tasks
 $sql = "SELECT * FROM tasks WHERE category = ?";
 $stmt = $conn->prepare($sql);
@@ -54,6 +68,17 @@ if (!$result) {
         .button:hover {
             background-color: #45a049;
         }
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .delete-button:hover {
+            background-color: #d32f2f;
+        }
     </style>
 </head>
 <body>
@@ -69,6 +94,7 @@ if (!$result) {
                 <th>Course ID</th>
                 <th>Task Name</th>
                 <th>Description</th>
+                <th>Action</th> <!-- New column for delete button -->
             </tr>
         </thead>
         <tbody>
@@ -79,14 +105,22 @@ if (!$result) {
                     echo "<td>" . htmlspecialchars($row['course_id']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['task_name']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['description']) . "</td>";
+                    echo "<td>
+                        <form method='post' style='display:inline;'>
+                            <input type='hidden' name='delete_task_id' value='" . htmlspecialchars($row['id']) . "'>
+                            <button type='submit' class='delete-button'>Delete</button>
+                        </form>
+                    </td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='3'>No tasks found for this category.</td></tr>";
+                echo "<tr><td colspan='4'>No tasks found for this category.</td></tr>";
             }
             ?>
         </tbody>
     </table>
+    <button onclick="history.back();" class="button">Go Back</button>
+
 </body>
 </html>
 

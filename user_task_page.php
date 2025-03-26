@@ -18,8 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['task_image'])) {
     // Save the uploaded file to the server
     if (move_uploaded_file($_FILES["task_image"]["tmp_name"], $target_file)) {
         // Insert submission into the database
-        $stmt = $conn->prepare("INSERT INTO user_submissions (task_id, user_id, submission_path) VALUES (?, ?, ?)");
-        $stmt->bind_param("iis", $task_id, $user_id, $target_file);
+        $stmt = $conn->prepare("INSERT INTO user_submissions (task_id, user_id, submission_path,category) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("iiss", $task_id, $user_id, $target_file, $category);
         if ($stmt->execute()) {
             $upload_success = true;
         } else {
