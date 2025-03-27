@@ -87,36 +87,38 @@ session_start();
             <div class="navbar">
                 <div class="logo">
                     <a href="#">
-                        <h1>Tech Droids</h1>
+                        <h3>Tech Droids</h3>
                     </a>
                 </div>
                 <nav>
                     <ul id="MenuItems">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#category">Course</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <?php
-                            if (!isset($_SESSION['username'])){
-                        ?>
-                        <li><a href="admin_login.php">Admin Panel</a></li><?php
-                            }?>
-                    </ul>
-                </nav>
-                <img src="./assets/images/menu.png" class="menu-icon" onclick="menutoggle()">
-                <?php if (isset($_SESSION['username'])): ?>
-                <div class="profile-icon" onclick="toggleDropdown()">
-                    <img src="<?php echo $_SESSION['photo_path']; ?>" alt="User Profile" class="profile-image">
-                    <!-- <div class="notification-dot"></div> -->
-                    <div class="dropdown-content" id="myDropdown">
-                        <div class="dropdown-header"><?php echo $_SESSION['username']; ?></div>
-                        <a href="edit_profile.php"><img src="path/to/icon.png" class="dropdown-icon">Edit profile</a>
-                        <a href="logout.php"><img src="path/to/icon.png" class="dropdown-icon">Sign Out</a>
-                    </div>
-                </div>
-                <?php else: ?>
-                <a href="login.html">Sign In</a>
-                <?php endif; ?>
+                    <li><a href="#">Home</a></li>
+<li><a href="#category">Course</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Contact</a></li>
+<?php
+    if (!isset($_SESSION['username']) && !isset($_SESSION['admin_logged_in'])) {
+?>
+<li><a href="admin_login.php">Admin Panel</a></li>
+<?php
+    }
+?>
+</ul>
+</nav>
+<img src="./assests/images/menu.png" class="menu-icon" onclick="menutoggle()">
+<?php if (isset($_SESSION['username'])): ?>
+<div class="profile-icon" onclick="toggleDropdown()">
+    <img src="<?php echo $_SESSION['photo_path']; ?>" alt="User Profile" class="profile-image">
+    <div class="dropdown-content" id="myDropdown">
+        <div class="dropdown-header"><?php echo $_SESSION['username']; ?></div>
+        <a href="edit_profile.php"><img src="path/to/icon.png" class="dropdown-icon">Edit profile</a>
+        <a href="logout.php"><img src="path/to/icon.png" class="dropdown-icon">Sign Out</a>
+    </div>
+</div>
+<?php elseif (!isset($_SESSION['admin_logged_in'])): ?>
+<a href="login.html">Sign In</a>
+<?php endif; ?>
+
             </div>
             <div class="row">
                 <div class="col-2">

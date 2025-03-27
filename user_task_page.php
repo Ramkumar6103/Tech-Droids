@@ -4,7 +4,7 @@ include 'includes/db.php';
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    header("Location: login.html");
     exit();
 }
 
@@ -14,22 +14,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['task_image'])) {
     $user_id = $_SESSION['user_id'];
     $target_dir = "assessment/";
     $target_file = $target_dir . basename($_FILES["task_image"]["name"]);
+    
+    // Allowed image mime types
+    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
 
-    // Save the uploaded file to the server
-    if (move_uploaded_file($_FILES["task_image"]["tmp_name"], $target_file)) {
-        // Insert submission into the database
-        $stmt = $conn->prepare("INSERT INTO user_submissions (task_id, user_id, submission_path,category) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("iiss", $task_id, $user_id, $target_file, $category);
-        if ($stmt->execute()) {
-            $upload_success = true;
+    // Check the file type
+    if (in_array($_FILES["task_image"]["type"], $allowed_types)) {
+        // Save the uploaded file to the server
+        if (move_uploaded_file($_FILES["task_image"]["tmp_name"], $target_file)) {
+            // Insert submission into the database
+            $stmt = $conn->prepare("INSERT INTO user_submissions (task_id, user_id, submission_path,category) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("iiss", $task_id, $user_id, $target_file, $category);
+            if ($stmt->execute()) {
+                $upload_success = true;
+            } else {
+                echo "Error: " . $stmt->error;
+            }
+            $stmt->close();
         } else {
-            echo "Error: " . $stmt->error;
+            echo "Sorry, there was an error uploading your file.";
         }
-        $stmt->close();
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        echo "Only JPG, PNG, and GIF image files are allowed.";
     }
 }
+
 
 // Fetch tasks from the database based on category
 $sql = "SELECT * FROM tasks WHERE category = ?";

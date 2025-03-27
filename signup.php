@@ -1,6 +1,11 @@
 <?php
 session_start();
 include 'includes/db.php';
+// Check if admin is logged in
+if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
+    header('Location: admin_dashboard.php'); // Redirect to the admin dashboard
+    exit();
+}
 
 try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -20,14 +25,27 @@ try {
         // Hashing the password
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+        // Allowed image types
+        $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+
+        // Validate photo file type
+        if (!in_array($photo["type"], $allowed_types)) {
+            throw new Exception("Photo must be an image file (JPG, PNG, or GIF).");
+        }
+
+        // Validate ID card file type
+        if (!in_array($id_card["type"], $allowed_types)) {
+            throw new Exception("ID card must be an image file (JPG, PNG, or GIF).");
+        }
+
         // Handling file uploads with hashed filenames
         $upload_directory = "uploads/";
         $photo_hash = hash('sha256', $photo["name"] . time());
         $id_card_hash = hash('sha256', $id_card["name"] . time());
-        
+
         $photo_extension = pathinfo($photo["name"], PATHINFO_EXTENSION);
         $id_extension = pathinfo($id_card["name"], PATHINFO_EXTENSION);
-        
+
         $photo_path = $upload_directory . $photo_hash . '.' . $photo_extension;
         $id_card_path = $upload_directory . $id_card_hash . '.' . $id_extension;
 
