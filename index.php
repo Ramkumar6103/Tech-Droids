@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if (isset($_SESSION['admin_logged_in'])) {
+     header('Location: admin_dashboard.php');
+     exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -116,7 +121,7 @@ session_start();
     </div>
 </div>
 <?php elseif (!isset($_SESSION['admin_logged_in'])): ?>
-<a href="login.html">Sign In</a>
+<a href="login.php">Sign In</a>
 <?php endif; ?>
 
             </div>
