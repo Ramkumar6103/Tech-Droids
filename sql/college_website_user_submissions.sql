@@ -28,12 +28,13 @@ CREATE TABLE `user_submissions` (
   `task_id` int DEFAULT NULL,
   `submission_path` varchar(255) DEFAULT NULL,
   `submission_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `category` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `task_id` (`task_id`),
+  KEY `user_submissions_ibfk_2` (`task_id`),
   CONSTRAINT `user_submissions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `user_submissions_ibfk_2` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `user_submissions_ibfk_2` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +43,6 @@ CREATE TABLE `user_submissions` (
 
 LOCK TABLES `user_submissions` WRITE;
 /*!40000 ALTER TABLE `user_submissions` DISABLE KEYS */;
-INSERT INTO `user_submissions` VALUES (3,7,7,'assessment/don_the_chase_begins_again.jpg','2025-03-12 07:36:53');
 /*!40000 ALTER TABLE `user_submissions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-21 11:53:33
+-- Dump completed on 2025-03-28 15:30:19

@@ -29,7 +29,7 @@ CREATE TABLE `tasks` (
   `category` varchar(255) DEFAULT NULL,
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` VALUES (6,'1234','task1','Logical Thinking','new task for logical thinking'),(7,'12453','Factorial','Logical Thinking','Find the factorial of the given number');
+INSERT INTO `tasks` VALUES (7,'12453','Factorial','Logical Thinking','Find the factorial of the given number'),(8,'12323','Fibonacchi series','Logical Thinking','Find out the fibonnacci series'),(9,'123454','Test','Logical Thinking','Testing'),(12,'4356435','dfgdfgdfgdfgdf','Programming','retret'),(13,'345435','retret','Logical Thinking','test');
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-21 11:53:33
+-- Dump completed on 2025-03-28 15:30:18
