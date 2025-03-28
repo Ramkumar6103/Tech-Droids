@@ -77,6 +77,18 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register Page</title>
     <link rel="stylesheet" href="register.css" />
+    <style>
+        .container{
+            width: 360px;
+            background: rgb(0, 0, 0);
+            box-shadow: 5px 5px 25px 5px gray;
+
+        }
+        .input-group select{
+            background:rgb(180, 154, 219);
+        }
+        
+    </style>
 </head>
 <body>
     <video autoplay muted loop playsinline class="background-video">
@@ -119,15 +131,19 @@ $conn->close();
                     <option value="2022-2025">2022-2025</option>
                     <option value="2023-2026">2023-2026</option>
                     <option value="2024-2027">2024-2027</option>
+                    <option value="2024-2026">2024-2026</option>
+                    <option value="2023-2025">2023-2025</option>
                 </select>
             </div>
 
             <div class="input-group">
+                <span style="font-size:15px; ">Photo upload</span>
                 <label for="upload-photo"></label>
                 <input type="file" name="upload-photo" id="upload-photo" required />
             </div>
 
             <div class="input-group">
+                <span style="font-size:15px; padding:5px;">Id card upload</span>
                 <label for="upload-id"></label>
                 <input type="file" name="upload-id" id="upload-id" required />
             </div>

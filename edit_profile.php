@@ -73,7 +73,7 @@ $conn->close();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Profile</title>
-    <link rel="stylesheet" href="signup.css" />
+    <link rel="stylesheet" href="edit_pro.css" />
 </head>
 <body>
     <div class="container">
@@ -81,27 +81,29 @@ $conn->close();
             <h2>Edit Profile</h2>
 
             <div class="input-group">
+            <label for="username">Username</label>
                 <input type="text" name="username" id="username" value="<?php echo $row['username']; ?>" required />
-                <label for="username">Username</label>
             </div>
 
             <div class="input-group">
+            <label for="email">Email</label>
                 <input type="email" name="email" id="email" value="<?php echo $row['email']; ?>" required />
-                <label for="email">Email</label>
             </div>
 
             <div class="input-group">
+            <label for="password">New Password (Leave blank if you don't want to change)</label>
                 <input type="password" name="password" id="password" />
-                <label for="password">New Password (Leave blank if you don't want to change)</label>
             </div>
 
             <!-- Academic Year Dropdown -->
             <div class="input-group">
                 <label for="academic_year"></label>
                 <select name="academic_year" id="academic_year" required>
-                    <option value="2023-2024" <?php if($row['academic_year'] == '2023-2024') echo 'selected'; ?>>2023-2024</option>
-                    <option value="2024-2025" <?php if($row['academic_year'] == '2024-2025') echo 'selected'; ?>>2024-2025</option>
-                    <option value="2025-2026" <?php if($row['academic_year'] == '2025-2026') echo 'selected'; ?>>2025-2026</option>
+                    <option value="2022-2025" <?php if($row['academic_year'] == '2022-2025') echo 'selected'; ?>>2022-2025</option>
+                    <option value="2023-2026" <?php if($row['academic_year'] == '2023-2026') echo 'selected'; ?>>2023-2026</option>
+                    <option value="2024-2027" <?php if($row['academic_year'] == '2024-2027') echo 'selected'; ?>>2024-2027</option>
+                    <option value="2024-2026" <?php if($row['academic_year'] == '2024-2026') echo 'selected'; ?>>2024-2026</option>
+                    <option value="2023-2025" <?php if($row['academic_year'] == '2023-2025') echo 'selected'; ?>>2023-2025</option>
                 </select>
             </div>
 

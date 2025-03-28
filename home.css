@@ -32,7 +32,6 @@ body {
   height: 70px;
 }
 
-
 .logo h2 {
   color: #fff;
   margin-top: 20px;
@@ -718,7 +717,7 @@ svg path {
   width: 300px;
   height: 300px;
   margin-bottom: 20px;
-  filter: drop-shadow(3px 3px 3px lightblue);
+  filter: drop-shadow(3px 3px 3px rgb(222, 215, 192));
 }
 
 .footer hr {

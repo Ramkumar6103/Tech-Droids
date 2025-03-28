@@ -56,7 +56,14 @@ $conn->close();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login.css" />
+    <style>
+        .container{
+            width: 360px;
+            background: rgb(0, 0, 0);
+            box-shadow: 5px 5px 25px 5px gray;
+        }
+    </style>
 </head>
 <body>
     <video autoplay muted loop playsinline class="background-video">
@@ -84,6 +91,8 @@ $conn->close();
                     <option value="2022-2025">2022-2025</option>
                     <option value="2023-2026">2023-2026</option>
                     <option value="2024-2027">2024-2027</option>
+                    <option value="2024-2026">2024-2026</option>
+                    <option value="2023-2025">2023-2025</option>
                 </select>
             </div>
 

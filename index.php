@@ -17,6 +17,26 @@ if (isset($_SESSION['admin_logged_in'])) {
     <link rel="shortcut icon" href="./assests/images/logo-icon.png" type="image/png">
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
+    <!-- <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script src ="./script.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "DvKaxWtmm4wkssvSj",
+      });
+   })();
+</script> -->
+
+ <!-- This is Mail Sender JS -->
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script type="text/javascript">
+    emailjs.init('DvKaxWtmm4wkssvSj')
+</script>
+
+
    <style>
     .profile-icon {
   position: relative;
@@ -55,26 +75,34 @@ if (isset($_SESSION['admin_logged_in'])) {
 
 .dropdown-header {
   padding: 10px;
-  background-color: #007bff;
+  background-color:rgb(38, 0, 255);
   color: white;
   text-align: center;
+  font-size: 20px;
 }
 
 .dropdown-content a {
   color: black;
+  /* margin-left: 20px; */
   padding: 12px 16px;
   text-decoration: none;
-  display: block;
+  display: flex;
 }
 
 .dropdown-content a:hover {
   background-color: #f1f1f1;
 }
 
-.dropdown-icon {
-  width: 20px;
-  height: 20px;
+.dropdown-icon img{
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
+}
+
+p{
+  color: black;
+  margin-left: 20px;
+  margin-top: 5px;
 }
 
 .show {
@@ -116,8 +144,8 @@ if (isset($_SESSION['admin_logged_in'])) {
     <img src="<?php echo $_SESSION['photo_path']; ?>" alt="User Profile" class="profile-image">
     <div class="dropdown-content" id="myDropdown">
         <div class="dropdown-header"><?php echo $_SESSION['username']; ?></div>
-        <a href="edit_profile.php"><img src="path/to/icon.png" class="dropdown-icon">Edit profile</a>
-        <a href="logout.php"><img src="path/to/icon.png" class="dropdown-icon">Sign Out</a>
+        <a href="edit_profile.php"><img src="./assests/images/edit_profile.png" class="dropdown-icon"><p>Edit profile</p></a>
+        <a href="logout.php"><img src="./assests/images/logout (2).png" class="dropdown-icon"><p>Sign Out</p></a>
     </div>
 </div>
 <?php elseif (!isset($_SESSION['admin_logged_in'])): ?>
@@ -131,7 +159,7 @@ if (isset($_SESSION['admin_logged_in'])) {
                     <div class="typing-demo">
                 <h2>Tech Droids</h2>
               </div>
-                    <p>Success isn't always about greatness. It's about consistency. Consistent<br> hard work gains success. Greatness will come</p>
+                    <p style= "color:white">Success isn't always about greatness. It's about consistency. Consistent<br> hard work gains success. Greatness will come</p>
                     <a href="#about" class="btn">Explore Now &#8594</a>
                 </div>     
             </div>
@@ -248,27 +276,52 @@ if (isset($_SESSION['admin_logged_in'])) {
         <div class="title">
             <h1>Query Section</h1>
         </div>
-        <form action="https://api.web3forms.com/submit" method="POST" class = "contact-left">
-            <input type="hidden" name="apikey" value="da5af3a1-33df-4146-adaf-8e059099a49b">
-            <input type="text" name="name" placeholder="Your Name" class="contact-inputs" required>
-            <input type="email" name="email" placeholder="Your Email" class="contact-inputs" required>
-            <textarea name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
-            <input type="hidden" name="redirect" value="https://web3forms.com/success">
-            <button type="submit">Submit &#8594</button>
+        <form method="POST" class = "contact-left" id="form">
+            <input type="text" id="name" name="name" placeholder="Your Name" class="contact-inputs" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" class="contact-inputs" required>
+            <textarea id="message" name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
+            <!-- <button type="submit" id="button" onclick="sendMail()">Submit &#8594</button> -->
+            <button id="button" class="btn btn-default btn-hover btn-hover-accent" type="submit">
+                                                    <span class="btn-caption" id="value">Send Message</span>
+                                                    <i class="ph-bold ph-paper-plane-tilt"></i>
+                                                </button>
         </form>
     </div>
 
+                            <!-- Send Mail JS Script -->
+                            <script>
+                                const btn = document.getElementById('button');
+                                const value = document.getElementById('value');
+
+                                document.getElementById('form').addEventListener('submit', function(event) {
+                                    event.preventDefault();
+
+                                    value.innerHTML = 'Sending...';
+
+                                    const serviceID = 'service_ea3ya1z';
+                                    const templateID = 'template_1ntgup3';
+
+                                    emailjs.sendForm(serviceID, templateID, this)
+                                    .then(() => {
+                                        btn.value = location.reload();
+                                        alert('Email Send Successfully!');
+                                    }, (err) => {
+                                        btn.value = 'Send Email';
+                                        alert(JSON.stringify(err));
+                                    });
+                                });
+                            </script>
     <!-- Footer -->
     <div class="footer">
         <div class="container">
             <div class="row">
                 <div class="footer-2">
-                    <img src="./assests/images/logo-1.png">
+                    <img src="./assests/images/tech_droids.png">
                     <p>Our purpose is to sustainably make the pleasure and benefits of sports accessible to the many.</p>
                 </div>
             </div>
             <hr>
-            <p class="copy-right">&copy; CopyRight by SL Solution Pvt Ltd 2025</p>
+            <p class="copy-right">&copy; Copyrights by Droids Association - 2025. All Rights Reserved.</p>
         </div> 
     </div>
 
