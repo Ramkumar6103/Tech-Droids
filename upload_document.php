@@ -8,14 +8,14 @@ if (!isset($_SESSION['admin_logged_in']) || !isset($_SESSION['admin_task_type'])
     exit();
 }
 
-$task_type = $_SESSION['admin_task_type'];
+$category = $_SESSION['admin_task_type'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = $_POST['description'];
     $day = $_POST['days'];
 
     // File Upload Handling
-    $category = $task_type;
+    //$category = $task_type;
     $target_dir = "doc_uploads/";
     $file_name = basename($_FILES["document"]["name"]);
     $target_file = $target_dir . $file_name;
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </style>
 </head>
 <body>
-    <h1>Upload Document - <?php echo htmlspecialchars($task_type); ?></h1>
+    <h1>Upload Document - <?php echo htmlspecialchars($category); ?></h1>
 
     <form action="upload_document.php?category=<?php echo urlencode($category); ?>" method="POST" enctype="multipart/form-data">
 

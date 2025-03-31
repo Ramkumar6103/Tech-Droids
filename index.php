@@ -60,6 +60,8 @@ if (isset($_SESSION['admin_logged_in'])) {
       width: 40px;
       height: 40px;
       border-radius: 50%;
+      margin-top: 15px;
+      
     }
 
     .dropdown-content {
@@ -132,7 +134,9 @@ if (isset($_SESSION['admin_logged_in'])) {
     padding: 10px 0;
     text-align: center;
   }
-
+  .sign-in{
+    margin-top:10px
+  }
   nav ul.show {
     display: flex; /* Show menu when toggled */
   }
@@ -180,7 +184,7 @@ if (isset($_SESSION['admin_logged_in'])) {
             ?>
           </ul>
         </nav>
-        <div class="menu-icon">&#9776;</div>
+        <div class="menu-icon"  style="margin-right:70px">&#9776;</div>
         <?php if (isset($_SESSION['username'])): ?>
           <div class="profile-icon" onclick="toggleDropdown()">
             <img src="<?php echo $_SESSION['photo_path']; ?>" alt="User Profile" class="profile-image">
@@ -192,7 +196,7 @@ if (isset($_SESSION['admin_logged_in'])) {
           </div>
         <?php elseif (!isset($_SESSION['admin_logged_in'])): ?>
           <!-- <a style="margin-right:70px" href="login.php">Sign In</a> -->
-          <a style="margin-right:70px" href="login.php">Sign In</a>
+          <a  href="login.php" class="sign-in">Sign In</a>
         <?php endif; ?>
 
       </div>
