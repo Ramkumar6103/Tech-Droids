@@ -150,6 +150,40 @@ if (isset($_SESSION['admin_logged_in'])) {
     display: block; /* Show hamburger menu */
   }
 }
+.image-marquee {
+  width: 100%;
+  overflow: hidden;
+  background: #000; /* Optional background */
+  padding: 10px 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: fit-content;
+  animation: scroll-left 20s linear infinite;
+}
+
+.marquee-track img {
+  width: 25%;
+  min-width: 300px;  /* Adjust based on how many you want visible */
+  height: auto;
+  margin-right: 10px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.image-marquee:hover .marquee-track {
+  animation-play-state: paused;
+} 
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
 
   </style>
@@ -209,7 +243,21 @@ if (isset($_SESSION['admin_logged_in'])) {
          
           <a href="#about" class="btn">Explore Now &#8594</a>
         </div>
+
       </div>
+      <div class="image-marquee">
+  <div class="marquee-track">
+    <img src="./assests/images/about1.jpg" alt="Slide 1">
+    <img src="./assests/images/about1.jpg" alt="Slide 2">
+    <img src="./assests/images/about1.jpg" alt="Slide 3">
+    <img src="./assests/images/about1.jpg" alt="Slide 4">
+    <!-- Repeat images for infinite effect -->
+    <img src="./assests/images/about1.jpg" alt="Slide 1 Duplicate">
+    <img src="./assests/images/about1.jpg" alt="Slide 2 Duplicate">
+    <img src="./assests/images/about1.jpg" alt="Slide 3 Duplicate">
+    <img src="./assests/images/about1.jpg" alt="Slide 4 Duplicate">
+  </div>
+</div>
     </div>
   </div>
 
