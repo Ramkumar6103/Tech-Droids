@@ -61,7 +61,7 @@ if (isset($_SESSION['admin_logged_in'])) {
       height: 40px;
       border-radius: 50%;
       margin-top: 15px;
-      
+
     }
 
     .dropdown-content {
@@ -113,79 +113,86 @@ if (isset($_SESSION['admin_logged_in'])) {
     }
 
     .menu-icon {
-  display: none;
-  cursor: pointer;
-  font-size: 30px;
-  color: white;
-  position: absolute;
-  right: 20px;
-  top: 20px;
-}
+      display: none;
+      cursor: pointer;
+      font-size: 30px;
+      color: white;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
 
-@media (max-width: 768px) {
-  nav ul {
-    display: none; /* Hide menu by default */
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.9);
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    padding: 10px 0;
-    text-align: center;
-  }
-  .sign-in{
-    margin-top:10px
-  }
-  nav ul.show {
-    display: flex; /* Show menu when toggled */
-  }
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        /* Hide menu by default */
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+      }
 
-  nav ul li {
-    display: block;
-    margin: 10px 0;
-  }
+      .sign-in {
+        margin-top: 10px
+      }
 
-  .menu-icon {
-    display: block; /* Show hamburger menu */
-  }
-}
-.image-marquee {
-  width: 100%;
-  overflow: hidden;
-  background: #000; /* Optional background */
-  padding: 10px 0;
-}
+      nav ul.show {
+        display: flex;
+        /* Show menu when toggled */
+      }
 
-.marquee-track {
-  display: flex;
-  width: fit-content;
-  animation: scroll-left 20s linear infinite;
-}
+      nav ul li {
+        display: block;
+        margin: 10px 0;
+      }
 
-.marquee-track img {
-  width: 25%;
-  min-width: 300px;  /* Adjust based on how many you want visible */
-  height: auto;
-  margin-right: 10px;
-  object-fit: cover;
-  border-radius: 10px;
-}
+      .menu-icon {
+        display: block;
+        /* Show hamburger menu */
+      }
+    }
 
-.image-marquee:hover .marquee-track {
-  animation-play-state: paused;
-} 
+    .image-marquee {
+      width: 100%;
+      overflow: hidden;
+      background: #000;
+      /* Optional background */
+      padding: 10px 0;
+    }
 
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
+    .marquee-track {
+      display: flex;
+      width: fit-content;
+      animation: scroll-left 20s linear infinite;
+    }
 
+    .marquee-track img {
+      width: 25%;
+      min-width: 300px;
+      /* Adjust based on how many you want visible */
+      height: auto;
+      margin-right: 10px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
 
+    .image-marquee:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
   </style>
 </head>
 
@@ -209,6 +216,7 @@ if (isset($_SESSION['admin_logged_in'])) {
             <li><a href="#category">Course</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="event.php">Events</a></li>
             <?php
             if (!isset($_SESSION['username']) && !isset($_SESSION['admin_logged_in'])) {
               ?>
@@ -218,19 +226,23 @@ if (isset($_SESSION['admin_logged_in'])) {
             ?>
           </ul>
         </nav>
-        <div class="menu-icon"  style="margin-right:70px">&#9776;</div>
+        <div class="menu-icon" style="margin-right:70px">&#9776;</div>
         <?php if (isset($_SESSION['username'])): ?>
           <div class="profile-icon" onclick="toggleDropdown()">
             <img src="<?php echo $_SESSION['photo_path']; ?>" alt="User Profile" class="profile-image">
             <div class="dropdown-content" id="myDropdown">
               <div class="dropdown-header"><?php echo $_SESSION['username']; ?></div>
-              <a href="edit_profile.php"><img src="./assests/images/edit_profile.png" class="dropdown-icon"><p>Edit profile</p></a>
-              <a href="logout.php"><img src="./assests/images/logout (2).png" class="dropdown-icon"><p>Sign Out</p></a>
+              <a href="edit_profile.php"><img src="./assests/images/edit_profile.png" class="dropdown-icon">
+                <p>Edit profile</p>
+              </a>
+              <a href="logout.php"><img src="./assests/images/logout (2).png" class="dropdown-icon">
+                <p>Sign Out</p>
+              </a>
             </div>
           </div>
         <?php elseif (!isset($_SESSION['admin_logged_in'])): ?>
           <!-- <a style="margin-right:70px" href="login.php">Sign In</a> -->
-          <a  href="login.php" class="sign-in">Sign In</a>
+          <a href="login.php" class="sign-in">Sign In</a>
         <?php endif; ?>
 
       </div>
@@ -240,24 +252,24 @@ if (isset($_SESSION['admin_logged_in'])) {
           <div class="typing-demo">
             <h2>Tech Droids</h2>
           </div>
-         
+
           <a href="#about" class="btn">Explore Now &#8594</a>
         </div>
 
       </div>
       <div class="image-marquee">
-  <div class="marquee-track">
-    <img src="./assests/images/about1.jpg" alt="Slide 1">
-    <img src="./assests/images/about1.jpg" alt="Slide 2">
-    <img src="./assests/images/about1.jpg" alt="Slide 3">
-    <img src="./assests/images/about1.jpg" alt="Slide 4">
-    <!-- Repeat images for infinite effect -->
-    <img src="./assests/images/about1.jpg" alt="Slide 1 Duplicate">
-    <img src="./assests/images/about1.jpg" alt="Slide 2 Duplicate">
-    <img src="./assests/images/about1.jpg" alt="Slide 3 Duplicate">
-    <img src="./assests/images/about1.jpg" alt="Slide 4 Duplicate">
-  </div>
-</div>
+        <div class="marquee-track">
+          <img src="./assests/images/about1.jpg" alt="Slide 1">
+          <img src="./assests/images/about1.jpg" alt="Slide 2">
+          <img src="./assests/images/about1.jpg" alt="Slide 3">
+          <img src="./assests/images/about1.jpg" alt="Slide 4">
+          <!-- Repeat images for infinite effect -->
+          <img src="./assests/images/about1.jpg" alt="Slide 1 Duplicate">
+          <img src="./assests/images/about1.jpg" alt="Slide 2 Duplicate">
+          <img src="./assests/images/about1.jpg" alt="Slide 3 Duplicate">
+          <img src="./assests/images/about1.jpg" alt="Slide 4 Duplicate">
+        </div>
+      </div>
     </div>
   </div>
 
@@ -384,7 +396,7 @@ if (isset($_SESSION['admin_logged_in'])) {
 
 
   <!-- Contact Us -->
-  <div class="contact-container" id ="contact">
+  <div class="contact-container" id="contact">
     <div class="title">
       <h1>Query Section</h1>
     </div>
@@ -440,17 +452,17 @@ if (isset($_SESSION['admin_logged_in'])) {
   <script>
     //navbar
     document.addEventListener("DOMContentLoaded", function () {
-    const menuIcon = document.querySelector(".menu-icon");
-    const navMenu = document.querySelector("nav ul");
+      const menuIcon = document.querySelector(".menu-icon");
+      const navMenu = document.querySelector("nav ul");
 
-    menuIcon.addEventListener("click", function () {
+      menuIcon.addEventListener("click", function () {
         navMenu.classList.toggle("show");
+      });
     });
-});
 
-function toggleDropdown() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
+    function toggleDropdown() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
     // Close the dropdown if the user clicks outside of it
     window.onclick = function (event) {
       if (!event.target.matches('.profile-image')) {
