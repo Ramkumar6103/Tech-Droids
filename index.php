@@ -216,11 +216,11 @@ if (isset($_SESSION['admin_logged_in'])) {
             <li><a href="#category">Course</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="event.php">Events</a></li>
+            <li><a href="calendar.php">Calendar</a></li>
             <?php
             if (!isset($_SESSION['username']) && !isset($_SESSION['admin_logged_in'])) {
               ?>
-              <li><a href="admin_login.php">Admin Panel</a></li>
+              <li><a href="admin/admin_login.php">Admin Panel</a></li>
               <?php
             }
             ?>

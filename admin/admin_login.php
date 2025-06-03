@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'includes/db.php';
+include '../includes/db.php';
 
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
     header('Location: admin_dashboard.php'); // Redirect admin to the dashboard

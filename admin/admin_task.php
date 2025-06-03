@@ -1,5 +1,5 @@
 <?php
-include 'includes/db.php';
+include '../includes/db.php';
 
 // Get the selected category
 $category = isset($_GET['category']) ? trim($_GET['category']) : '';

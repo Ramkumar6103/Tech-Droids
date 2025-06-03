@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'includes/db.php';
+include '../includes/db.php';
 
 // Check if the admin is logged in and authorized
 if (!isset($_SESSION['admin_logged_in']) || !isset($_SESSION['admin_task_type'])) {

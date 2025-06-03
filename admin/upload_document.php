@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'includes/db.php';
+include '../includes/db.php';
 
 // Check if the admin is logged in
 if (!isset($_SESSION['admin_logged_in']) || !isset($_SESSION['admin_task_type'])) {
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // File Upload Handling
     //$category = $task_type;
-    $target_dir = "doc_uploads/";
+    $target_dir = "../doc_uploads/";
     $file_name = basename($_FILES["document"]["name"]);
     $target_file = $target_dir . $file_name;
     move_uploaded_file($_FILES["document"]["tmp_name"], $target_file);
